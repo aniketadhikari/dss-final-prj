@@ -1,0 +1,37 @@
+form {
+    margin-bottom: 1rem;
+}
+
+code {
+    white-space: pre;
+    font-family: monospace;
+}
+
+.supply {
+    background-color: aqua;
+}
+
+.demand {
+    background-color: honeydew;
+}
+
+input {
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+}
+
+#deliveries {
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 25px;
+}
+
+#dCosts {
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 25px;
+}
+

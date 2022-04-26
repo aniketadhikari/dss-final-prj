@@ -13,7 +13,7 @@
 
     <!--Local Assets-->
     <link href="styles/main.css" rel="stylesheet">
-    <script src="scripts/stockactions.js"></script>
+    <script src="scripts/main.js"></script>
 
 
     <title>London Archers</title>
@@ -54,6 +54,64 @@
 
       <header class="masthead">
     </header>
+
+    <body onload="updateTable()">
+        <div class="container">
+            <h1 class="header">London Archers Catalog</h1>
+            <div class="col-12 container submission_form">
+                <form class="row g-3" id="submitForm">
+    
+                    <div class="col-md-6">
+                        <label class="form-label" for="product">Product</label>
+                        <input class="form-control" type="text" name="product" id="product">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="price">Price</label>
+                        <input class="form-control" type="number" name="price" id="price">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="category">Category</label>
+                        <select class="form-select" name="category" id="category">
+                    <option value="hat">Hat</option>
+                    <option value="jacket">Jacket</option>
+                    <option value="jersey">Jersey</option>	
+                    <option value="sweatshirt">Sweatshirt</option>
+                    <option value="tshirt">T-shirt</option>
+                </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="photoURL">Photo URL</label>
+                        <input class="form-control" type="text" name="photoURL" id="photoURL">
+                    </div>
+                    <button type="button" onclick="buttonSubmit()" id="submitButton">
+                        Add Product
+                    </button>
+                </form>
+            </div>
+            <div class="col-12">
+                <h2>London Archers Catalog</h2>
+                <table class="table" id="addressTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Category</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="addressTableBody">
+                        <tr data-powerappsid="95916d7e7b664033a0e29e112f7d9349" data-name="London Archers Away Jersey">
+                            <th scope="row">Jersey</th>
+                            <td>London Archers Away Jersey</td>
+                            <td>129.99</td>
+                            <td><a href="purchase.html" class="btn btn-danger">Buy Now</a></td>
+                            <td><button type="button">Order</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 </body>
 
 </html>
