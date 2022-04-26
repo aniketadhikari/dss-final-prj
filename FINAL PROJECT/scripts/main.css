@@ -1,0 +1,26 @@
+.masthead {
+    height: 40vh;
+    min-height: 100px;
+    background-image: url(../images/archers.PNG);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 2rem;
+}
+
+html, body{
+    background-color: whitesmoke;
+}
+
+.header img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #555;
+  }
+  
+  .header h1 {
+    position: relative;
+    top: 18px;
+    left: 10px;
+  }
