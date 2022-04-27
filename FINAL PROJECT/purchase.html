@@ -29,7 +29,7 @@
     <title>London Archers</title>
   </head>
 
-  <body onload="fillDropdown()">
+  <body onload="fillDropdown(); fillMerchTable()">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">Jimmy's Sports Apparel</a>
@@ -72,10 +72,52 @@
     <header class="masthead"></header>
 
     <div class="container">
-        <h1>Purchase Merchandise</h1>
-        <select id="merch"></select>
-        <input type="number" id="quantityPurchased" />
-        <button type="button" onclick="purchase()">Purchase</button>
+      <h1 class="header" style="text-align: center;">Purchase Merchandise</h1>
+      <div class="options">
+        <table>
+          <thead id="item-table-header">
+            <tr>
+              <td>
+                Item Category and Name
+              </td>
+              <td>
+                Quantity to Purchase
+              </td>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              <select id="merch" class="option"></select>
+            </td>
+            <td>
+              <input class="option" type="number" id="quantityPurchased" />
+            </td>
+            <td>
+              <button class="option" type="button" onClick="makePurchase()">Purchase</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="container">
+      <h1 class="header" style="text-align: center;">Current Merchandise</h1>
+      <div id="sorter">
+        <button id="sortButton" onclick="sortMerch('merchTable', 'low to high')">$ to $$$</button>
+        <button id="sortButton" onclick="sortMerch('merchTable', 'high to low')">$$$ to $</button>
+      </div>
+      <table class="table" id="merchTable">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Product</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="items"></tbody>
+      </table>
     </div>
   </body>
 </html>
