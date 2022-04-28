@@ -17,7 +17,6 @@
     <!--Local Assets-->
     <link href="styles/main.css" rel="stylesheet">
     <link href="styles/delivery.css" rel="stylesheet">
-    <script src="scripts/stockactions.js"></script>
     <script src="scripts/optimization.js"></script>
 
 
@@ -85,6 +84,7 @@
                     <td><input type="number" value="1000" class="supply" id="supplyW4" data-warehouse="W4"></td>
                     <!--<td><input type="number" class="supply" id="supplyW5" data-warehouse="W5"></td>-->
                 </tr>
+                <!--Camden-->
                 <tr id="warehousesCost">
                     <th scope="row"><input type="text" value="Camden" class="store" id="storeS1" data-store="S1"></th>
                     <td><input type="number" class="demand" id="demandS1" data-store="S1"></td>
@@ -94,15 +94,38 @@
                     <td><input type="number" class="route" id="S1W4" data-store="S1" data-warehouse="W4"></td>
                     <!--<td><input type="number" class="route" id="S1W5" data-store="S1" data-warehouse="W5"></td>-->
                 </tr>
-    
+                <!--Chelsea-->
+                <tr id="warehousesCost">
+                    <th scope="row"><input type="text" class="store" id="storeS2" data-store="S2" value="Chelsea"></th>
+                    <td><input type="number" class="demand" id="demandS2" data-store="S2"></td>
+                    <td><input type="number" class="route" id="S2W1" data-store="S2" data-warehouse="W1"></td>
+                    <td><input type="number" class="route" id="S2W2" data-store="S2" data-warehouse="W2"></td>
+                    <td><input type="number" class="route" id="S2W3" data-store="S2" data-warehouse="W3"></td>
+                    <td><input type="number" class="route" id="S2W4" data-store="S2" data-warehouse="W4"></td>
+                    <!--<td><input type="number" class="route" id="S1W5" data-store="S1" data-warehouse="W5"></td>-->
+                </tr>
+                <!--Westminster-->
+                <tr id="warehousesCost">
+                    <th scope="row"><input type="text" class="store" id="storeS3" data-store="S3" value="Westminster">
+                    </th>
+                    <td><input type="number" class="demand" id="demandS3" data-store="S3"></td>
+                    <td><input type="number" class="route" id="S3W1" data-store="S3" data-warehouse="W1"></td>
+                    <td><input type="number" class="route" id="S3W2" data-store="S3" data-warehouse="W2"></td>
+                    <td><input type="number" class="route" id="S3W3" data-store="S3" data-warehouse="W3"></td>
+                    <td><input type="number" class="route" id="S3W4" data-store="S3" data-warehouse="W4"></td>
+                    <!--<td><input type="number" class="route" id="S1W5" data-store="S1" data-warehouse="W5"></td>-->
+                </tr>
+
+
+
             </tbody>
         </table>
-    
-    
+
+
         <button type="button" onclick="AddStore()">Add Store</button>
-    
+
         <button type="button" onclick="AddWarehouse()">Add Warehouse</button>
-    
+
         <button type="button" onclick="btnClick()">Minimize Cost</button>
     </div>
     <div class="container">
@@ -118,21 +141,21 @@
                 <div class="col">
                     <h4>Warehouse 2</h4>
                     <ul id="deliveriesW2">
-    
+
                     </ul>
                     <p id="totalW2"></p>
                 </div>
                 <div class="col">
                     <h4>Warehouse 3</h4>
                     <ul id="deliveriesW3">
-    
+
                     </ul>
                     <p id="totalW3"></p>
                 </div>
                 <div class="col">
                     <h4>Warehouse 4</h4>
                     <ul id="deliveriesW4">
-    
+
                     </ul>
                     <p id="totalW4"></p>
                 </div>

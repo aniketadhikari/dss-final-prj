@@ -16,13 +16,14 @@
 
     <!--Local Assets-->
     <link href="styles/main.css" rel="stylesheet">
-    <script src="scripts/stockactions.js"></script>
+    <!-- <script src="scripts/stockactions.js"></script> -->
+    <script src="scripts/OptimizationOrder.js"></script>
 
 
     <title>London Archers</title>
 </head>
 
-<body>
+<body onload="getItemName()">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
         <div class="container">
@@ -59,46 +60,168 @@
     <header class="masthead">
     </header>
     <div class="container">
-        <h2>Ice Cream Ordering System</h2>
-        <h4 id="indent"> Costs</h4>
+        <h2>Apperal Ordering System</h2>
+
         <!-- You need to add a form to collect information-->
         <form id="infoForm" action="" onsubmit="">
             <!-- 2 column grid layout with text inputs for the first and last names -->
+
+            <!--Item Order form-->
+            <h4 id="indent">Maximum Amout Desiered</h4>
             <div class="row mb-4">
                 <div class="col">
-                    <div class="form-outline">
+                    <div class="row">
 
-                        <label class="form-label">Ice Cream</label>
-                        <input type="number" id="iceCost" name="iceCreams" value="3.86" class="form-control" />
+                        <label class="form-label">Item: </label>
+                        <label class="form-label">Amount (dozen): </label>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-outline">
+                    <div class="row">
 
-                        <label class="form-label">Frozen Yogurt</label>
-                        <input type="number" id="froyoCost" class="form-control" value="2.43" />
+                        <input type="text" id="item1" value="T-shirt" class="form-label">
+                        <input type="number" id="TSAmount" name="tshirts" value="60" class="form-control" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item2" value="Hat" class="form-label">
+                        <input type="number" id="HatAmount" class="form-control" value="75" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item3" value="Sweatshirt" class="form-label">
+                        <input type="number" id="SSAmount" class="form-control" value="50" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item4" value="Jersey" class="form-label">
+                        <input type="number" id="JerseyAmount" class="form-control" value="60" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item5" value="Jacket" class="form-label">
+                        <input type="number" id="JacketAmount" class="form-control" value="40" />
                     </div>
                 </div>
             </div>
-            <h4>Profits</h4>
+
+            <!--costs form-->
+            <h4 id="indent"> Costs Per Dozen</h4>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="row">
+
+                        <label class="form-label">Item: </label>
+                        <label class="form-label">Cost $: </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item1" value="T-shirt" class="form-label">
+                        <input type="number" id="TSCost" name="tshirts" value="36" class="form-control" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item2" value="Hat" class="form-label">
+                        <input type="number" id="HatCost" class="form-control" value="24" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item3" value="Sweatshirt" class="form-label">
+                        <input type="number" id="SSCost" class="form-control" value="120" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item4" value="Jersey" class="form-label">
+                        <input type="number" id="JerseyCost" class="form-control" value="240" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" id="item5" value="Jacket" class="form-label">
+                        <input type="number" id="JacketCost" class="form-control" value="216" />
+                    </div>
+                </div>
+            </div>
+            <h4>Profit Per Dozen</h4>
             <!-- Number input -->
             <div class="row mb-4">
                 <div class="col">
-                    <div class="form-outline">
+                    <div class="row">
 
-                        <label class="form-label">Ice Cream</label>
-                        <input type="number" id="iceProfit" value="8.30" class="form-control" />
+                        <label class="form-label">Item: </label>
+                        <label class="form-label">Profit $: </label>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-outline">
+                    <div class="row">
 
-                        <label class="form-label">Frozen Yogurt</label>
-                        <input type="number" id="froyoProfit" value="6.50" class="form-control" />
+                        <input type="text" value="T-shirt" class="form-label">
+                        <input type="number" id="TSProfit" name="iceCreams" value="180" class="form-control" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" value="Hat" class="form-label">
+                        <input type="number" id="HatProfit" class="form-control" value="144" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" value="Sweatshirt" class="form-label">
+                        <input type="number" id="SSProfit" class="form-control" value="480" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" value="Jersey" class="form-label">
+                        <input type="number" id="JerseyProfit" class="form-control" value="960" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="text" value="Jacket" class="form-label">
+                        <input type="number" id="JacketProfit" class="form-control" value="600" />
                     </div>
                 </div>
             </div>
+            <h4 id="indent">Budget </h4>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="row">
 
+                        <label class="form-label">Maximum Budget $: </label>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+
+                        <input type="number" id="BudgetAmount" name="BudgetD" value="35000" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
 
 
 
@@ -106,6 +229,7 @@
 
             <!-- Submit button -->
             <button type="button" class="btn btn-primary btn-block mb-4" onclick="Optimize()">Compile Order</button>
+            <button type="button" class="btn btn-primary btn-block mb-4" onclick="Reset()">Reset Order</button>
             <!-- Default button -->
             <!--  <button type="button" class="btn btn-primary btn-block mb-4" onclick="addData()">Add Default Values</button>  -->
         </form>
@@ -115,10 +239,14 @@
 
     <div id="orderDetails" class="bg-light">
         <h2>Order Details</h2>
-        <p><b>Ice Cream</b> - <span id="ic_number"></span></p>
-        <p><b>Frozen Yogurt</b> - <span id="fy_number"></span></p>
-        <p><b>Total</b> - <span id="total_number"></span></p>
-        <p><b>Potential Profit</b> - <span id="profit"></span></p>
+        <p><b><span id="name1"></span></b> - <span id="TS_number"></span></p>
+        <p><b><span id="name2"></span></b> - <span id="hat_number"></span></p>
+        <p><b><span id="name3"></span></b> - <span id="SS_number"></span></p>
+        <p><b><span id="name4"></span></b> - <span id="Jersey_number"></span></p>
+        <p><b><span id="name5"></span></b> - <span id="Jacket_number"></span></p>
+        <p><b>Total </b> - <span id="total_number"></span></p>
+        <p><b>Total cost</b> - <span id="total_cost"></span></p>
+        <p><b>Profit off Order</b> - <span id="profit"></span></p>
     </div>
 </body>
 
