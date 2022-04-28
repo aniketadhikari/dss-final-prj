@@ -61,7 +61,7 @@ function getNextWarehouseId() {
 }
 
 function getLastWarehouseId() {
-    
+
     let warehouses = getWarehouse();
     let lastWarehouse = warehouses[warehouses.length - 1];
 
@@ -75,28 +75,28 @@ function getLastWarehouseId() {
 
 function AddStore() {
 
-    let newStoreId = getNextStoreId(); 
- 
-    let store = document.createElement("tr"); 
-    let storeHeader = document.createElement("th"); 
-    storeHeader.setAttribute("scope", "row"); 
+    let newStoreId = getNextStoreId();
+
+    let store = document.createElement("tr");
+    let storeHeader = document.createElement("th");
+    storeHeader.setAttribute("scope", "row");
     storeHeader.innerHTML = "<input type='text' class='store' id='store" + newStoreId + "' data-store='" + newStoreId + "'>";
-    store.appendChild(storeHeader); 
- 
-    let storeDemand = document.createElement("td"); 
- 
-    storeDemand.innerHTML = "<input type='number' class='demand' id='demand" + newStoreId + "' data-store='" + newStoreId + "'>"; 
-    store.appendChild(storeDemand); 
- 
-    let warehouses = getWarehouse(); 
-    for (let step = 0; step < warehouses.length; step++) { 
-        let route = document.createElement("td"); 
-        let warehouseId = warehouses[step].dataset.warehouse; 
-        route.innerHTML = "<input type='number' class='route' id='" + newStoreId + warehouseId + "' data-store='" + newStoreId + "' data-warehouse='" + warehouseId + "'>"; 
-        store.appendChild(route); 
-    } 
- 
-    document.getElementById("storesList").append(store); 
+    store.appendChild(storeHeader);
+
+    let storeDemand = document.createElement("td");
+
+    storeDemand.innerHTML = "<input type='number' class='demand' id='demand" + newStoreId + "' data-store='" + newStoreId + "'>";
+    store.appendChild(storeDemand);
+
+    let warehouses = getWarehouse();
+    for (let step = 0; step < warehouses.length; step++) {
+        let route = document.createElement("td");
+        let warehouseId = warehouses[step].dataset.warehouse;
+        route.innerHTML = "<input type='number' class='route' id='" + newStoreId + warehouseId + "' data-store='" + newStoreId + "' data-warehouse='" + warehouseId + "'>";
+        store.appendChild(route);
+    }
+
+    document.getElementById("storesList").append(store);
 
 }
 
@@ -105,24 +105,24 @@ function AddWarehouse() {
     let newWarehouseId = getNextWarehouseId();
 
 
-    let warehouseHeader = document.createElement("th"); 
-    warehouseHeader.setAttribute("scope", "col"); 
+    let warehouseHeader = document.createElement("th");
+    warehouseHeader.setAttribute("scope", "col");
     warehouseHeader.innerHTML = "<input type='text' onchange='updateTable()' class='warehouse' id='warehouse" + newWarehouseId + "' data-warehouse='" + newWarehouseId + "'>";
 
 
     document.getElementById("warehousesList").append(warehouseHeader);
 
-    let warehouseSupply = document.createElement("td"); 
- 
-    warehouseSupply.innerHTML = "<input type='number' class='supply' id='supply" + newWarehouseId + "' data-warehouse='" + newWarehouseId + "'>"; 
+    let warehouseSupply = document.createElement("td");
+
+    warehouseSupply.innerHTML = "<input type='number' class='supply' id='supply" + newWarehouseId + "' data-warehouse='" + newWarehouseId + "'>";
     document.getElementById("warehousesSupply").append(warehouseSupply);
 
 
-    let stores = getStores(); 
-    for (let step = 0; step < stores.length; step++) { 
+    let stores = getStores();
+    for (let step = 0; step < stores.length; step++) {
         let warehouseCost = document.createElement("td");
-        let storeId = stores[step].dataset.store;  
-        warehouseCost.innerHTML = "<input type='number' class='route' id='" + storeId + newWarehouseId + "' data-store='" + storeId + "' data-warehouse='" + newWarehouseId + "'>"; 
+        let storeId = stores[step].dataset.store;
+        warehouseCost.innerHTML = "<input type='number' class='route' id='" + storeId + newWarehouseId + "' data-store='" + storeId + "' data-warehouse='" + newWarehouseId + "'>";
         document.getElementById("store" + storeId).parentNode.parentNode.append(warehouseCost);
 
 
@@ -131,7 +131,7 @@ function AddWarehouse() {
 
 }
 
-function updateTable(){
+function updateTable() {
     let newWarehouseId = getLastWarehouseId();
 
     let warecolumn = document.createElement("div");
@@ -143,30 +143,30 @@ function updateTable(){
 
 function displayResults(results) {
 
-    let routes = getRoutes(); 
- 
-    for (let step = 0; step < routes.length; step++) { 
-        let routeId = routes[step].id; 
-        let warehouseId = routes[step].dataset.warehouse; 
-        let storeId = routes[step].dataset.store; 
-        let routeAmount = Number(results[routeId].data[0][0]); 
- 
- 
-        if (routeAmount > 0) { 
-            let delivery = document.createElement("li"); 
-            delivery.innerHTML = getStoreName(storeId) + " - " + routeAmount; 
-            document.getElementById("deliveries" + warehouseId).appendChild(delivery); 
-        } 
+    let routes = getRoutes();
+
+    for (let step = 0; step < routes.length; step++) {
+        let routeId = routes[step].id;
+        let warehouseId = routes[step].dataset.warehouse;
+        let storeId = routes[step].dataset.store;
+        let routeAmount = Number(results[routeId].data[0][0]);
+
+
+        if (routeAmount > 0) {
+            let delivery = document.createElement("li");
+            delivery.innerHTML = getStoreName(storeId) + " - " + routeAmount;
+            document.getElementById("deliveries" + warehouseId).appendChild(delivery);
+        }
     }
 
-    let warehouses = getWarehouse(); 
-    console.log(warehouses); 
-    for (let step = 0; step < warehouses.length; step++) { 
-        let warehouseId = warehouses[step].dataset.warehouse; 
-        document.getElementById("total" + warehouseId).innerHTML = "Total Quantity: " + (Number(results[warehouseId].data[0][0])); 
-    } 
+    let warehouses = getWarehouse();
+    console.log(warehouses);
+    for (let step = 0; step < warehouses.length; step++) {
+        let warehouseId = warehouses[step].dataset.warehouse;
+        document.getElementById("total" + warehouseId).innerHTML = "Total Quantity: " + (Number(results[warehouseId].data[0][0]));
+    }
 
-    document.getElementById("cost").innerHTML = results.obj.data[0][0];
+    document.getElementById("cost").innerHTML = CurrencyFormat(results.obj.data[0][0]);
 
 }
 
@@ -191,58 +191,58 @@ async function Optimize() {
 function buildModel() {
 
 
-    let variables = getRoutes(); 
- 
-    for (let step = 0; step < variables.length; step++) { 
-        addVariable(variables[step].id, "lower", 0, true); 
-    } 
+    let variables = getRoutes();
 
-
-    let warehouseConstraints = getWarehouse(); 
- 
-    for (let step = 0; step < warehouseConstraints.length; step++) { 
-        let warehouseId = warehouseConstraints[step].dataset.warehouse; 
-        let value = document.getElementById("supply" + warehouseId).value 
- 
-        let relatedRoutes = variables.filter(variable => variable.dataset.warehouse == warehouseId); 
-        let formula = ""; 
-        for (let step = 0; step < relatedRoutes.length; step++) { 
-            formula += relatedRoutes[step].id; 
-            if (step !== (relatedRoutes.length - 1)) { 
-                formula += " + " 
-            } 
-        } 
-        addConstraint(warehouseId, "upper", value, formula); 
- 
-    }
-
-    let storesConstraints = getStores(); 
- 
-    for (let step = 0; step < storesConstraints.length; step++) { 
-        let storeId = storesConstraints[step].dataset.store; 
-        let value = document.getElementById("demand" + storeId).value; 
- 
-        let relatedRoutes = variables.filter(variable => variable.dataset.store == storeId); 
-        let formula = ""; 
-        for (let step = 0; step < relatedRoutes.length; step++) { 
-            formula += relatedRoutes[step].id; 
-            if (step !== (relatedRoutes.length - 1)) { 
-                formula += " + " 
-            } 
-        } 
-        addConstraint(storeId, "equal", value, formula); 
- 
+    for (let step = 0; step < variables.length; step++) {
+        addVariable(variables[step].id, "lower", 0, true);
     }
 
 
-    let objformula = ""; 
-    for (let step = 0; step < variables.length; step++) { 
-        let coef = document.getElementById(variables[step].id).value; 
-        objformula += coef + " * " + variables[step].id; 
-        if (step !== (variables.length - 1)) { 
-            objformula += " + " 
-        } 
-    } 
+    let warehouseConstraints = getWarehouse();
+
+    for (let step = 0; step < warehouseConstraints.length; step++) {
+        let warehouseId = warehouseConstraints[step].dataset.warehouse;
+        let value = document.getElementById("supply" + warehouseId).value
+
+        let relatedRoutes = variables.filter(variable => variable.dataset.warehouse == warehouseId);
+        let formula = "";
+        for (let step = 0; step < relatedRoutes.length; step++) {
+            formula += relatedRoutes[step].id;
+            if (step !== (relatedRoutes.length - 1)) {
+                formula += " + "
+            }
+        }
+        addConstraint(warehouseId, "upper", value, formula);
+
+    }
+
+    let storesConstraints = getStores();
+
+    for (let step = 0; step < storesConstraints.length; step++) {
+        let storeId = storesConstraints[step].dataset.store;
+        let value = document.getElementById("demand" + storeId).value;
+
+        let relatedRoutes = variables.filter(variable => variable.dataset.store == storeId);
+        let formula = "";
+        for (let step = 0; step < relatedRoutes.length; step++) {
+            formula += relatedRoutes[step].id;
+            if (step !== (relatedRoutes.length - 1)) {
+                formula += " + "
+            }
+        }
+        addConstraint(storeId, "equal", value, formula);
+
+    }
+
+
+    let objformula = "";
+    for (let step = 0; step < variables.length; step++) {
+        let coef = document.getElementById(variables[step].id).value;
+        objformula += coef + " * " + variables[step].id;
+        if (step !== (variables.length - 1)) {
+            objformula += " + "
+        }
+    }
     addObjective("minimize", objformula);
 
 }
@@ -261,7 +261,7 @@ function addVariable(name, opperator, value, integer = true) {
         variable.lower = Number(value);
     }
 
- 
+
     if (integer) {
         variable.type = "int";
     }
@@ -311,4 +311,13 @@ function addObjective(type = "maximize", formula) {
     model.objective.obj.type = type;
     model.objective.obj.formula = formula;
     model.objective.obj.finalValue = [];
+}
+
+function CurrencyFormat(number) {
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    });
+
+    return formatter.format(number);
 }
