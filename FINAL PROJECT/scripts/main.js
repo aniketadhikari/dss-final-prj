@@ -223,8 +223,8 @@ function sortMerch(table, sortType) {
         r = t.rows;
         for (i = 1; i < (r.length - 1); i++) {
             switched = false;
-            x = r[i].getElementsByTagName("td")[1];
-            y = r[i + 1].getElementsByTagName("td")[1];
+            x = r[i].getElementsByTagName("td")[2];
+            y = r[i + 1].getElementsByTagName("td")[2];
             if (sortType == "high to low") {
                 if (Number(x.innerHTML) < Number(y.innerHTML)) {
                     switched = true;
@@ -268,4 +268,36 @@ async function updateMerch(merchId, quantity) {
     });
     const results = await response.json();
     return results;
+}
+
+function sortAddress(table, sortType) {
+    var t, r, s, i, x, y, switched;
+    t = document.getElementById(table);
+    s = true;
+    while (s) {
+        s = false;
+        r = t.rows;
+        for (i = 1; i < (r.length - 1); i++) {
+            switched = false;
+            x = r[i].getElementsByTagName("td")[1];
+            y = r[i + 1].getElementsByTagName("td")[1];
+            if (sortType == "high to low") {
+                if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                    switched = true;
+                    break;
+                }
+            }
+            else if ("low to high") {
+                if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                    switched = true;
+                    break;
+                }
+            }
+            
+        }
+        if (switched) {
+            r[i].parentNode.insertBefore(r[i + 1], r[i]);
+            s = true;
+        }
+    }
 }
