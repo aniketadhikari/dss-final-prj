@@ -8,11 +8,11 @@ code {
 }
 
 .supply {
-    background-color: aqua;
+    background-color: rgba(255, 0, 0, 0.504);
 }
 
 .demand {
-    background-color: honeydew;
+    background-color: rgba(0, 0, 0, 0.263);
 }
 
 input {

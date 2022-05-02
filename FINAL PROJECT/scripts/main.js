@@ -124,12 +124,6 @@ function createAddressRow(item) {
 
 }
 
-/**
- * Gets the Merch API, which has the columns "ItemInternalId", "category", 
- * "product", "price", "photoURL"
- * 
- * @returns Merch API
- */
 async function getMerch() {
     let apiUrl = "https://prod-153.westus.logic.azure.com:443/workflows/4a0245250a15435e971659c7ef70dd73/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=adirpWQNgHFQdWf8TeDqHVTApzlb4A_Uxd_wyQxIT0w";
     const response = await fetch(apiUrl);
@@ -138,12 +132,6 @@ async function getMerch() {
     return result;
 }
 
-/**
- * Creates a dropdown option for the merchandise
- * 
- * @param {*} product  the product we are adding as an option to the dropdown
- * @returns the selection for a dropdown
- */
 function createSelectOption(product) {
     let newOption = document.createElement("option");
     newOption.setAttribute("value", product.ItemInternalId)
@@ -151,11 +139,6 @@ function createSelectOption(product) {
     return newOption;
 }
 
-
-
-/**
- * fills the dropdown with the merchandise available to customers 
- */
 async function fillDropdown() {
     let data = await getMerch();
     for (let step = 0; step < data.length; step++) {
@@ -165,13 +148,66 @@ async function fillDropdown() {
     }
 }
 
+function autoSaveElements() {
+    let inputelements = Array.from(document.getElementsByTagName("input"));
+    let select = Array.from(document.getElementsByTagName("select"));
+
+    let elements = inputelements.concat(select);
+
+    return elements;
+}
+
+function autoSaveFormData() {
+    let inputs = autoSaveElements();
+
+    for (let index = 0; index < inputs.length; index++) {
+        let input = inputs[index];
+        let inputId = "BIT4444_" + input.id;
+        localStorage.setItem(inputId, input.value);
+    }
+}
+
+function recoverAutoSaveFormData() {
+
+    let inputs = autoSaveElements();
+
+    for (let index = 0; index < inputs.length; index++) {
+        let input = inputs[index];
+        let inputId = "BIT4444_" + input.id;
+
+        if (localStorage.getItem(inputId) !== null) {
+
+            document.getElementById(input.id).value = localStorage.getItem(inputId);
+
+            document.getElementById("autosaveMessage").classList.remove("d-none");
+        }
+
+    }
+
+}
+
+function removedAutoSaveFormData() {
+
+    let inputs = autoSaveElements();
+
+    for (let index = 0; index < inputs.length; index++) {
+        let input = inputs[index];
+        let inputId = "BIT4444_" + input.id;
+
+        if (localStorage.getItem(inputId) !== null) {
+            localStorage.removeItem(inputId);
+        }
+
+    }
+}
+
 /**
  * Gets the Stock API, which includes the columns "ItemInternalId", "Category", 
  * "Name", "CurrentStock", "NotificationLevel", "RestockLevel"
  * 
  * @returns Stock API 
  */
-async function getStock() {
+ async function getStock() {
     let apiUrl = "https://prod-135.westus.logic.azure.com/workflows/4b4315ff11704ef5bcd3ee0f249d96e0/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=znqlVI9xwfTbC2SCG0AQkCCqVJaFql18udw8pBji-HU";
     const response = await fetch(apiUrl);
     const result = await response.json();
@@ -196,21 +232,24 @@ async function fillMerchTable() {
  * @param {} item the product to make a row out of
  * @returns the inventory row
  */
-function createInventoryRow(item) {
+function createInventoryRow(product) {
     let newRow = document.createElement("tr");
     newRow.classList.add("merch");
-    newRow.setAttribute("data-stock", item.CurrentStock);
-    newRow.setAttribute("data-id", item.ItemInternalId);
+    newRow.setAttribute("data-stock", product.CurrentStock);
+    newRow.setAttribute("data-id", product.ItemInternalId);
 
     let newRowHeader = document.createElement("th");
-    newRowHeader.innerHTML = item.Name;
+    newRowHeader.innerHTML = product.Name;
     let newRowCategory = document.createElement("td");
-    newRowCategory.innerHTML = item.Category;
+    newRowCategory.innerHTML = product.Category;
     let newRowStock = document.createElement("td");
-    newRowStock.innerHTML = item.CurrentStock;
+    newRowStock.innerHTML = product.CurrentStock;
+    let newRowPrice = document.createElement("td");
+    newRowPrice.innerHTML = product.Price;
     newRow.appendChild(newRowHeader);
     newRow.appendChild(newRowCategory);
     newRow.appendChild(newRowStock);
+    newRow.appendChild(newRowPrice);
     return newRow;
 }
 
@@ -223,8 +262,8 @@ function sortMerch(table, sortType) {
         r = t.rows;
         for (i = 1; i < (r.length - 1); i++) {
             switched = false;
-            x = r[i].getElementsByTagName("td")[2];
-            y = r[i + 1].getElementsByTagName("td")[2];
+            x = r[i].getElementsByTagName("td")[1];
+            y = r[i + 1].getElementsByTagName("td")[1];
             if (sortType == "high to low") {
                 if (Number(x.innerHTML) < Number(y.innerHTML)) {
                     switched = true;
@@ -238,6 +277,38 @@ function sortMerch(table, sortType) {
                 }
             }
             
+        }
+        if (switched) {
+            r[i].parentNode.insertBefore(r[i + 1], r[i]);
+            s = true;
+        }
+    }
+}
+
+function sortAddress(table, sortType) {
+    var t, r, s, i, x, y, switched;
+    t = document.getElementById(table);
+    s = true;
+    while (s) {
+        s = false;
+        r = t.rows;
+        for (i = 1; i < (r.length - 1); i++) {
+            switched = false;
+            x = r[i].getElementsByTagName("td")[1];
+            y = r[i + 1].getElementsByTagName("td")[1];
+            if (sortType == "high to low") {
+                if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                    switched = true;
+                    break;
+                }
+            }
+            else if ("low to high") {
+                if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                    switched = true;
+                    break;
+                }
+            }
+
         }
         if (switched) {
             r[i].parentNode.insertBefore(r[i + 1], r[i]);
@@ -268,36 +339,4 @@ async function updateMerch(merchId, quantity) {
     });
     const results = await response.json();
     return results;
-}
-
-function sortAddress(table, sortType) {
-    var t, r, s, i, x, y, switched;
-    t = document.getElementById(table);
-    s = true;
-    while (s) {
-        s = false;
-        r = t.rows;
-        for (i = 1; i < (r.length - 1); i++) {
-            switched = false;
-            x = r[i].getElementsByTagName("td")[1];
-            y = r[i + 1].getElementsByTagName("td")[1];
-            if (sortType == "high to low") {
-                if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                    switched = true;
-                    break;
-                }
-            }
-            else if ("low to high") {
-                if (Number(x.innerHTML) > Number(y.innerHTML)) {
-                    switched = true;
-                    break;
-                }
-            }
-            
-        }
-        if (switched) {
-            r[i].parentNode.insertBefore(r[i + 1], r[i]);
-            s = true;
-        }
-    }
 }

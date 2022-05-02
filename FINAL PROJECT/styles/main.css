@@ -1,19 +1,44 @@
 .masthead {
-  height: 40vh;
-  min-height: 100px;
-  background-image: url(../images/archers.PNG);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-bottom: 2rem;
+    height: 40vh;
+    min-height: 100px;
+    background-image: url(../images/archers.PNG);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 2rem;
 }
 
 html, body{
-  background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 .techheader{
-  padding:25px;
+    padding:25px;
+    text-align: center;
+    background: #de041e;
+    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.paragraph{
+    padding: 10px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Rubik', sans-serif;
+}
+
+.card {display:inline-block;}
+
+body {
+    margin: 1rem;
+}
+
+.header{
+padding: 100px;
   text-align: center;
   background: #de041e;
   color: white;
@@ -21,102 +46,79 @@ html, body{
   text-transform: uppercase;
 }
 
-.paragraph{
-  padding: 10px;
-  text-align: center;
-  background-color: black;
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  font-family: 'Rubik', sans-serif;
-}
-
-.card {display:inline-block;}
-
-body {
-  margin: 1rem;
-}
-
-.header{
-padding: 100px;
-text-align: center;
-background: #de041e;
-color: white;
-font-size: 30px;
-text-transform: uppercase;
-}
-
 .submission_form {
-  margin-top: 2rem;
-  background-color: #000000;
-  padding: 1rem;
-  border-radius: 10px;
-  color: white;
-  margin-bottom: 2rem;
+    margin-top: 2rem;
+    background-color: #000000;
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 2rem;
 }
 
 #addressTable>tbody>tr:nth-child(2n) {
-  background-color: rgb(229, 225, 230);
+    background-color: rgb(229, 225, 230);
 }
 
 @keyframes spinner {
-  to {
-      transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .spinner:before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 75px;
-  height: 75px;
-  margin-top: -10px;
-  margin-left: -10px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  border-top-color: #000;
-  animation: spinner .6s linear infinite;
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75px;
+    height: 75px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #000;
+    animation: spinner .6s linear infinite;
 }
 
 #addressTable img{
-  max-width: 50%;
-  max-height: 50%;
-  display: block;
+    max-width: 50%;
+    max-height: 50%;
+    display: block;
 }
 
 html, body{
-  background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 .header img {
-  float: left;
-  width: 100px;
-  height: 100px;
-  background: #555;
-}
-
-.header h1 {
-  position: relative;
-  top: 18px;
-  left: 10px;
-}
-  .options {
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    border-radius: 10px;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #555;
   }
+  
+  .header h1 {
+    position: relative;
+    top: 18px;
+    left: 10px;
+  }
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #de041e;
+    color: white;
+    text-align: center;
+}
 
 .option {
     margin: 0px 60px 0px 60px;
 }
 
 #item-table-header {
-  color: white;
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 
@@ -125,4 +127,16 @@ html, body{
   color: white;
   border-radius: 10px;
 }
-  
+
+.options {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+
+.jersey{
+    background-color: #07c5ff25;
+}

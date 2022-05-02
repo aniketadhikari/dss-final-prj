@@ -13,13 +13,14 @@
 
     <!--Local Assets-->
     <link href="styles/main.css" rel="stylesheet">
-    <script src="scripts/stockactions.js"></script>
+    <script src="scripts/reviews.js"></script>
+    <script src="scripts/main.js"></script>
 
 
     <title>London Archers</title>
 </head>
 
-<body>
+<body onload="fillDropdown()">
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
         <div class="container">
@@ -53,7 +54,30 @@
     </nav>
 
       <header class="masthead">
+
     </header>
+
+    <form>
+        <div class="col-md-6">
+            <label class="form-label" for="category">Select Product</label>
+            <select id="merch" class="option"></select>
+        <div class="mb-3">
+            <label for="reviewText" class="form-label">Add Review</label>
+            <textarea class="form-control" rows="4" id="reviewText"></textarea>
+    </div>
+    <button type="button" class="btn btn-danger" onclick="btnAnalyze()">Submit Review</button>
+    </form>
+    <hr>
+    <div class="container">
+    <h2>Reviews</h2>
+    <div class="accordion" id="results">
+</div>
+    </div>
+</div>
+
+    <div class="footer">
+        <p><a href="mailto:shop@jimmyssports.com" style="color: white;"> Email Jimmy's Sports Apparel</a></p>
+        </div>
 </body>
 
 </html>
