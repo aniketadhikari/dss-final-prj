@@ -160,7 +160,7 @@ function autoSaveElements() {
 function autoSaveFormData() {
     let inputs = autoSaveElements();
 
-    for (let index = 0; index < inputs.length; index++) {
+    for (let index = 0; index <= inputs.length; index++) {
         let input = inputs[index];
         let inputId = "BIT4444_" + input.id;
         localStorage.setItem(inputId, input.value);
@@ -171,7 +171,7 @@ function recoverAutoSaveFormData() {
 
     let inputs = autoSaveElements();
 
-    for (let index = 0; index < inputs.length; index++) {
+    for (let index = 0; index <= inputs.length; index++) {
         let input = inputs[index];
         let inputId = "BIT4444_" + input.id;
 
