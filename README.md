@@ -1,5 +1,5 @@
 # Final Project - Web Decision Support System
-_Created by Aniket Adhikari, John DuBois, Rohan Krishnan, and Millie Tran for Professor Dickhan's BIT 4444 - Web Based DSS_
+_Created by Aniket Adhikari, John DuBois, Rohan Krishnan, and Millie Tran for Professor Dickhan's BIT 4444 - Web Based DSS_ (FINISHED)
 
 The objective of this project is to analyze, design, and implement a web based Decision Support System. You and your team have been contracted to help create a DSS for a business to help the end user in making a business. You need to deliver a completed DSS that the users can use easily. [The project will need to solve the final PROMPT from the 🔷 Project Proposal & API Connections [GRADED]]
 
